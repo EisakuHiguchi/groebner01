@@ -65,22 +65,22 @@ def func1(i0 , i1):
     A1 = W1 * X1
     A1 = A1.subs([[x0, i0], [x1, i1], [x2, 1]])
     
-    print("sum : ")
-    print(A1)
+    #print("sum : ")
+    #print(A1)
     
-    print("act : ")
-    print(activateFunc(A1))
+    #print("act : ")
+    #print(activateFunc(A1))
     
     A2 = W2 * activateFunc(A1)
     #A2 = W2 * A1
     #print(activateFunc(A1))
-    print("sum : ")
-    print(A2)
+    #print("sum : ")
+    #print(A2)
 
     #A3 = A2.subs([[x0, i0], [x1, i1], [x2, 1]])
     #print(activateFunc(A3))
-    print("act : ")
-    print(activateFunc(A2))
+    #print("act : ")
+    print(activateFunc(A2).tolist())
     
 
     
