@@ -155,6 +155,8 @@ def func1(i0 , i1):
     f.write("\n\noutput = activate(A3)\n")
     f.write(' , '.join(map(str, activateFunc(A3).tolist())))
 
+    func_A(Ga3,f)
+
     
 if __name__ == "__main__":
     #func([x1 + x2 + 4] + [x1**2 + x2**2])
