@@ -26,17 +26,12 @@ def func(g):
     for e in G.exprs:
         print(',\n'.join(map(str,solve(Eq(e,0)))))
 
-def func_A(G, f):
+def func_A(G):
     print('\n solve groebner: ')
-    f.write('\n\n solve groebner: \n\n')
-    temp = ' , '.join(map(str, G.exprs))
-    print(temp)
-    f.write(temp)
+    print(' , '.join(map(str, G.exprs)))
     #print('\n'.join(map(str,solve(G.exprs))))
     for e in G.exprs:
-        temp = ',\n'.join(map(str,solve(Eq(e,0))))
-        print(temp)
-        f.write(temp + "\n")
+        print(',\n'.join(map(str,solve(Eq(e,0)))))
 
 def genW(n):
     if n == "XOR1":
@@ -179,18 +174,29 @@ def func1(i0 , i1, B):
 
 
 
-    func_A(Ga3,f)
-
     
 if __name__ == "__main__":
     #func([x1 + x2 + 4] + [x1**2 + x2**2])
-    G1 = func1(0,0, "NAND")
-    G2 = func1(0,0, "OR")
+    i0 = 0
+    i1 = 0
+    G1 = func1(i0,i1, "NAND")
+    G2 = func1(i0,i1, "OR")
 
     Gl1 = G1.tolist()
     Gl2 = G2.tolist()
+    
     Gl1.append(Gl2)
+    #Gl2.append(Gl1)
 
-    print(groebner(G1))
+    M1 = Matrix(Gl1)
+    G3 = groebner(M1)
+    M2 = Matrix(G3.exprs)
+
+    print(M2.subs([[x0, 0], [x1, 0], [x2, 1]]))
+    print(M2.subs([[x0, 0], [x1, 1], [x2, 1]]))
+    print(M2.subs([[x0, 1], [x1, 0], [x2, 1]]))
+    print(M2.subs([[x0, 1], [x1, 1], [x2, 1]]))
+
+    #print(M1.subs([[x0, i0], [x1, i1], [x2, 1]]))
 
     #print(simplify(func1(0,0, "NAND"))) # bad result
