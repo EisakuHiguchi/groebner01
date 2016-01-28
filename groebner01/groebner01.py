@@ -26,12 +26,17 @@ def func(g):
     for e in G.exprs:
         print(',\n'.join(map(str,solve(Eq(e,0)))))
 
-def func_A(G):
+def func_A(G, f):
     print('\n solve groebner: ')
-    print(' , '.join(map(str, G.exprs)))
+    f.write('\n\n solve groebner: \n\n')
+    temp = ' , '.join(map(str, G.exprs))
+    print(temp)
+    f.write(temp)
     #print('\n'.join(map(str,solve(G.exprs))))
     for e in G.exprs:
-        print(',\n'.join(map(str,solve(Eq(e,0)))))
+        temp = ',\n'.join(map(str,solve(Eq(e,0))))
+        print(temp)
+        f.write(temp + "\n")
 
 def genW(n):
     if n == "XOR1":
@@ -173,6 +178,8 @@ def func1(i0 , i1, B):
     #f.write(' , '.join(map(str, activateFunc(A3).tolist())))
 
 
+
+    func_A(Ga3,f)
 
     
 if __name__ == "__main__":
