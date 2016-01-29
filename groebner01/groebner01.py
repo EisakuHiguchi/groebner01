@@ -110,12 +110,18 @@ def func1(i0 , i1, B):
     G2 = groebner(A2)
     Ga2 = groebner(activateFunc(A2))
     
-    #A3 = A2.subs([[x0, i0], [x1, i1], [x2, 1]])
+    A3 = A2.subs([[x0, i0], [x1, i1], [x2, 1]])
     #A3 = A2.subs([[x0, i0], [x2, 1]])
     #G3 = groebner(A3)
     #Ga3 = groebner(activateFunc(A3))
     
-    return activateFunc(A2)
+    
+
+    return A1
+
+    #return activateFunc(A2)
+
+    #return Ga2
 
     # record
     #print("\nA1 = W1 * X1\n")
@@ -182,20 +188,34 @@ if __name__ == "__main__":
     G1 = func1(i0,i1, "NAND")
     G2 = func1(i0,i1, "OR")
 
-    Gl1 = G1.tolist()
-    Gl2 = G2.tolist()
+    G1.col_join(G2)
     
-    Gl1.append(Gl2)
-    #Gl2.append(Gl1)
 
-    M1 = Matrix(Gl1)
-    G3 = groebner(M1)
-    M2 = Matrix(G3.exprs)
+    #Gl1 = G1.tolist()
+    #Gl2 = G2.tolist()
+    
+    #print(Gl1)
+    #print(Gl2)
 
-    print(M2.subs([[x0, 0], [x1, 0], [x2, 1]]))
-    print(M2.subs([[x0, 0], [x1, 1], [x2, 1]]))
-    print(M2.subs([[x0, 1], [x1, 0], [x2, 1]]))
-    print(M2.subs([[x0, 1], [x1, 1], [x2, 1]]))
+    #Gl1.append(Gl2)
+    ##Gl2.append(Gl1)
+
+    #print(Gl1)
+
+
+
+    # bad result
+    #M1 = Matrix(Gl1)
+    #G3 = groebner(M1.T)
+    #print(G3)
+    #print(M1.subs([[x0, 0],[x1,0],[x2,0]]))
+    #G3 = groebner(M1)
+    #M2 = Matrix(G3.exprs)
+
+    
+    #print(M1.subs([[x0, 0], [x1, 1], [x2, 1]]))
+    #print(M1.subs([[x0, 1], [x1, 0], [x2, 1]]))
+    #print(M1.subs([[x0, 1], [x1, 1], [x2, 1]]))
 
     #print(M1.subs([[x0, i0], [x1, i1], [x2, 1]]))
 
