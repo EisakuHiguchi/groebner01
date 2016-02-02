@@ -1,5 +1,3 @@
-
-
 import re
 from sympy import *
 
@@ -8,6 +6,7 @@ w03,w13,w23 = symbols('w03 w13 w23')
 w04,w14,w24 = symbols('w04 w14 w24')
 w05,w15,w25 = symbols('w05 w15 w25')
 w36,w46,w56 = symbols('w36 w46 w56')
+w37,w47,w57 = symbols('w37 w47 w57')
 
 
 def getW1():
@@ -20,6 +19,12 @@ def getW1():
 def getW2():
     return Matrix([\
         [w36 , w46, w56]\
+        ])
+
+def getW2_2():
+    return Matrix([\
+        [w36 , w46, w56],\
+        [w37 , w47, w57],\
         ])
     
 def getX1():
@@ -41,6 +46,13 @@ def activateFunc(A):
         result.append(r)
     return Matrix(result)
 
+def func_Solve(G):
+    print(' , '.join(map(str, G.exprs)))
+    for e in G.exprs:
+        temp = Eq(e,0)
+        temp = solve(temp)
+        print(',\n'.join(map(str,temp)))
+
 
 if __name__ == "__main__":
     W1 = getW1()
@@ -51,6 +63,7 @@ if __name__ == "__main__":
 
     A1 = W1 * X1
     aA1 = activateFunc(A1)
-    
-    A2 = W2 * A1
-    aA2 = activateFunc(A2)
+
+    aA1 = aA1.subs([ [x0,0], [x1,0], [x2,1] ])
+
+    func_Solve(groebner(aA1))
