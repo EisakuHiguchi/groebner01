@@ -34,10 +34,10 @@ def inputData(A):
     R3 = A.subs([ [x1,0], [x2,1], [x3,1] ])
     R4 = A.subs([ [x1,1], [x2,1], [x3,1] ])
 
-    r1 = R1[0] - 0
-    r2 = R2[0] - 1
-    r3 = R3[0] - 1
-    r4 = R4[0] - 0
+    r1 = R1[0] + 0
+    r2 = R2[0] + 1
+    r3 = R3[0] + 1
+    r4 = R4[0] + 0
 
     return [r1, r2, r3, r4]
 
@@ -115,7 +115,7 @@ def main_2():
 
 
 def main_3():
-    W1 = Matrix([[w14, w24, w34], [w15, w25, w35]])
+    W1 = Matrix([[w14, w24, w34]])
     X1 = Matrix([[x1], [x2], [x3]])
 
     A1 = W1 * X1
