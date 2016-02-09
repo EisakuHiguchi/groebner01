@@ -34,10 +34,10 @@ def inputData(A):
     R3 = A.subs([ [x1,0], [x2,1], [x3,1] ])
     R4 = A.subs([ [x1,1], [x2,1], [x3,1] ])
 
-    r1 = R1[0] + 0
-    r2 = R2[0] + 1
-    r3 = R3[0] + 1
-    r4 = R4[0] + 0
+    r1 = R1[0] - 1
+    r2 = R2[0] - 1
+    r3 = R3[0] - 1
+    r4 = R4[0] - 0
 
     return [r1, r2, r3, r4]
 
@@ -128,10 +128,14 @@ def main_3():
     gr = groebner(r)
     print(gr)
 
-    res = define_w(gr, [[w34, -6.8]])
+    #res = define_w(gr, [[w34, -6.8]])
     
     return gr
 
-
-    
+if __name__ == "__main__":
+    gr = main_3()
+    res = define_w(gr, [[w34, 10]])
+    print(res)
+    #res = define_w(gr,[[w34, 10],[w24, -10], [w14, -10]])
+    #print(res)
 
