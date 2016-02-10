@@ -10,7 +10,7 @@ w1e, w2e, w3e = symbols('w1e w2e w3e')
 w46, w56, we6= symbols('w46 w56 we6 ')
 
 def activateSub(value):
-    return 1.0 / (1.0 + exp(-1 * value)) 
+    return 1.0 / (1.0 + exp(-1 * value).evalf()) 
 
 def activateFunc(A):
     result = []
@@ -34,10 +34,10 @@ def inputData(A):
     R3 = A.subs([ [x1,0], [x2,1], [x3,1] ])
     R4 = A.subs([ [x1,1], [x2,1], [x3,1] ])
 
-    r1 = R1[0] - 1
-    r2 = R2[0] - 1
-    r3 = R3[0] - 1
-    r4 = R4[0] - 0
+    r1 = R1[0] + 0  # 0 0 1
+    r2 = R2[0] + 1  # 1 0 1
+    r3 = R3[0] + 1  # 0 1 1
+    r4 = R4[0] + 0  # 1 1 1
 
     return [r1, r2, r3, r4]
 
@@ -59,8 +59,9 @@ def define_w(gr,d):
     for e in gr.exprs:
         t = Matrix([e])
         t = t.subs(d)
+        t = t.evalf()
         result.append(t)
-    return result
+    return result    
 
 def main_1():
     W1 = Matrix([[w1],[w2]])
@@ -124,6 +125,8 @@ def main_3():
     print(A1)
 
     r = inputData(A1)
+
+    print(r)
 
     gr = groebner(r)
     print(gr)

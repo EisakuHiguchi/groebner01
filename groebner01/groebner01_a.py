@@ -27,5 +27,5 @@ def activateFunc(A):
     return Matrix(result)
 
 def input(A, d1, d2, d3):
-    return A.subs([[x1,d1], [x2,d2], [x3,d3]])
+    return A.subs([[x1,d1], [x2,d2], [x3,d3]]).evalf()
 
