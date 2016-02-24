@@ -112,7 +112,11 @@ def main_2():
     print(A2)
 
     r = inputData(A2)
-    print(groebner(r))
+    gr = groebner(r)
+
+    print(gr)
+
+    return gr
 
 
 def main_3():
